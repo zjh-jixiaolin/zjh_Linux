@@ -32,7 +32,7 @@
 
 在 `Linux` 系统中，常见的文件权限有 `3` 种，即对文件的 **读 、写、执行** 权限。权限细节总分为 `10` 个单位，具体如下：
 
-![image-20230506180152938](C:/Users/18279/AppData/Roaming/Typora/typora-user-images/image-20230506180152938.png)
+![image-20230506180152938](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305061947342.png)
 
 针对文件，文件夹的不同，`rwx` 的含义有细微差别：
 
