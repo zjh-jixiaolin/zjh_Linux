@@ -48,6 +48,52 @@
   > zjh ALL=(ALL) NOPASSWD:ALL
   ```
 
+## 权限管理
+
+### 权限信息
+
+<img src="C:/Users/18279/AppData/Roaming/Typora/typora-user-images/image-20230506210816900.png" alt="image-20230506210816900" style="zoom: 67%;" />
+
+### chmod 命令
+
+功能：**修改**文件、目录的**权限位**信息。
+
+注意：命令只有文件、文件夹的**所属用户**或 `root` 用户可以修改。
+
+语法：`chown [-R] 权限 文件或目录`
+
+- 选项：`-R`，递归更改目录及所有子目录和文件的权限。
+
+  ```bash
+  [zjh@localhost ~]$ chmod 755 opencv.py
+  > -rwxr-xr-x. 1 zjh zjh 7 May  7 04:02 opencv.py
+  
+  ```
+
+### chown 命令
+
+功能：**修改**文件、目录的 **所属用户、用户组** 信息。
+
+注意：命令只适用于 `root` 用户执行。
+
+语法：`chown [-R] [用户]/[:用户组] 文件或文件夹 `
+
+- 选项：`-R` ，递归更改指定文件或目录的 **文件拥有者** 和 **文件所属组** 信息。
+
+  ```bash
+  # 修改文件拥有者
+  [root@localhost zjh]# chown root opencv.py
+  > -rwxr-xr-x. 1 root zjh 7 May  7 04:02 opencv.py
+  
+  # 修改文件所属组
+  [root@localhost zjh]# chown :root opencv.py
+  > -rwxr-xr-x. 1 root root 7 May  7 04:02 opencv.py
+  ```
+
+  
+
+
+
 ## 用户管理
 
 以下命令需 `root` 用户执行。
