@@ -2,7 +2,7 @@
 
 [TOC]
 
-
+文档：[link](http://c.biancheng.net/view/705.html)
 
 ## su 命令
 
@@ -48,11 +48,17 @@
   > zjh ALL=(ALL) NOPASSWD:ALL
   ```
 
+
+
+<br />
+
+
+
 ## 权限管理
 
 ### 权限信息
 
-<img src="C:/Users/18279/AppData/Roaming/Typora/typora-user-images/image-20230506210816900.png" alt="image-20230506210816900" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305081339154.png" alt="image-20230506210816900" style="zoom: 67%;" />
 
 ### chmod 命令
 
@@ -90,7 +96,10 @@
   > -rwxr-xr-x. 1 root root 7 May  7 04:02 opencv.py
   ```
 
-  
+
+
+
+<br />
 
 
 
@@ -127,6 +136,12 @@
 
 >用户信息存储在 `/etc/passwd` 文件中，用户密码信息存储在`/etc/shadow`文件中。
 
+
+
+<br />
+
+
+
 ## 用户组管理
 
 以下命令需 `root` 用户执行。
@@ -149,9 +164,34 @@
 
 
 
+<br />
 
 
 
+## 常用快捷键
+
+### ctrl + c 强制停止
+
+`Linux` 某些程序运行，如果想要强制停止它，则需使用快捷键`ctrl + c`。
+
+### ctrl + d 退出或登出
+
+`Linux`系统中，想退出当前账户或某些特定程序的页面，则需使用快捷键`ctrl +d`。
+
+### ctrl + l 清空内容
+
+`Linux`系统中，通过命令`clear` 或 `ctrl + l` 清空终端内容。
+
+### history 命令
+
+`Linux`系统中，如果想查看历史输入的命令，则使用`history` 命令。结合`grep` 可进行过滤。
+
+### 光标移动快捷键
+
+- `ctrl + a`，跳到命令开头。
+- `ctrl + e`，跳到命令结尾。
+- `ctrl + 键盘左键`，向左跳一个单词。
+- `ctrl + 键盘右键`，向右跳一个单词。
 
 
 
