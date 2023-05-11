@@ -56,9 +56,7 @@
 
 ## systemctl 命令
 
-简介：`Linux` 许多软件（内置或第三方）均支持使用 `systemctl` 命令控制：**启动、停止、开机自启**，能够被 `systemctl` 管理的软件。一般也称为 **服务**。
-
-系统内置的服务较多，如下：
+简介：`Linux` 许多软件（内置或第三方）均支持使用 `systemctl` 命令控制：**启动、停止、开机自启**，能够被 `systemctl` 管理的软件。一般也称为 **服务**。系统内置的服务较多，如下：
 
 - `NetworkManager`，主网络服务
 - `network`，副网络服务
@@ -69,12 +67,12 @@
 
 语法：`systemctl start | stop | restart | disable | enable | status 服务名`
 
-- 参数：`start`，启动服务。
-- 参数：`stop`，停止服务。
-- 参数：`restart`，重启服务。
-- 参数：`status`，查看服务状态。
-- 参数：`enable`，启动开机自启。
-- 参数：`disable`，关闭开机自启。
+- 参数：`start`，启动服务
+- 参数：`stop`，停止服务
+- 参数：`restart`，重启服务
+- 参数：`status`，查看服务状态
+- 参数：`enable`，启动开机自启
+- 参数：`disable`，关闭开机自启
 
 
 
