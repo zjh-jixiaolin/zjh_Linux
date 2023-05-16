@@ -28,7 +28,7 @@
 
   ![image-20230517011146889](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305170124823.png)
 
->总结：
+>**总结**：
 >
 >计算机程序之间的通讯，`IP`地址只能锁定计算机，无法锁定具体的应用程序。
 >
