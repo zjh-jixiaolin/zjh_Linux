@@ -222,6 +222,7 @@ chronyc sources -v
 >1. 更快的初始同步：`chrony` 可在几秒内实现初始时钟同步，而 `ntpd` 需几分钟或更长时间才能完成。
 >2. 更准确和稳定的时间同步：`chrony`可通过时钟源选择、时钟滤波和时钟融合等技术。
 >3. 更少的系统资源占用：`chrony` 占用的系统资源较少，可在较低的系统要求下运行，适合 **嵌入式设备** 和 **低功耗系统** 等场景。
+>
 
 
 
@@ -310,6 +311,8 @@ chronyc sources -v
 
 设置：`hostnamectl set-hostname 主机名`
 
+扩展：`hostnamectl status` 显示当前主机的主机名和相关的系统信息。
+
 
 
 <br />
@@ -345,6 +348,157 @@ chronyc sources -v
 > ```
 
 
+
+<br />
+
+
+
+## 配置 VMware 固定IP
+
+### CentOS 配置 IP
+
+1. 修改 `VMware` 网络，流程如下
+
+   - 编辑 — 虚拟网络编辑器 — `VMnet8` — 更改设置 — `NAT` 模式 — 设置子网`IP` 和子网掩码 — `NAT` 设置 — 网关`IP`
+
+2. 设置 `Linux` 内部固定 `IP`
+
+   - 修改文件：` /etc/sysconfig/network-scripts/ifcfg-ens33`，示例内容如下：
+
+     ```bash
+     TYPE=Ethernet
+     PROXY_METHOD=none
+     BROWSER_ONLY=no
+     BOOTPROTO=static # 默认为DHCP，改为static，固定IP。
+     DEFROUTE=yes
+     IPV4_FAILURE_FATAL=no
+     IPV6INIT=yes
+     IPV6_AUTOCONF=yes
+     IPV6_DEFROUTE=yes
+     IPV6_FAILURE_FATAL=no
+     IPV6_ADDR_GEN_MODE=stable-privacy
+     NAME=ens33
+     UUID=655b3e86-ccb9-4ceb-8e91-d4ca7112e6b7
+     DEVICE=ens33
+     ONBOOT=yes
+     IPADDR=192.168.31.66 # IP地址，要匹配网络范围。
+     NETMASK=255.255.255.0 # 子网掩码，前三位为网络地址，后一位为主机地址。
+     GATEWAY=192.168.31.2 # 网关，与VMware配置一致。.1已被Windows占用，这里避免冲突设置为.2
+     DNS1=192.168.31.2 # 主DNS
+     DNS2=8.8.8.8 # 备用DNS
+     ```
+
+### Ubantu 配置 IP
+
+`Jetson nano` 或 树莓派配置 `wlan0` 固定 `IP` 地址，具体过程如下：
+
+```bash
+# 首先切换到 root用户
+su - root
+
+# 编辑网络配置文件（该文件包含了网络接口的配置信息，如IP地址、子网掩码、网关、DNS服务器）
+vim /etc/network/interfaces
+> auto wlan0 # 自启动wlan0网络
+> iface wlan0 inet static # 设置静态IP
+> address 192.168.31.80 # IP地址
+> netmask 255.255.255.0 # 子网掩码
+> gateway 192.168.31.1 # 网关
+> dns-nameservers 8.8.8.8 # dns服务器：解析域名。
+> wpa-ssid "608" # wifi名称
+> wpa-psk "20030716" # wifi密码
+
+# 重启即生效
+reboot now
+
+```
+
+
+
+<br />
+
+
+
+## wget 命令
+
+简介：`wget` 是一个非交互的文件下载器，可从命令行内下载网络文件。支持 `HTTP`、`HTTPS`、`FTP` 三个常见的 `TCP/IP`协议下载，并可使用  `HTTP` 代理。
+
+功能：文件下载器，可下载网络文件。
+
+语法：`wget [-b] url`
+
+- 选项：`-b` 后台执行下载任务，会将日志写入当前工作目录的 `wget-log` 文件。
+- 参数：`url` 下载链接。
+
+实例：
+
+```bash
+# 1.下载网络文件
+wget http://archive.apache.org/dist/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz # ctr l+ c：可停止下载程序
+
+# 2.后台下载
+wget -b http://archive.apache.org/dist/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz
+> Continuing in background, pid 3469.
+> Output will be written to ‘wget-log’. # 输出写入至 wget-log日志文件
+tail -f wget-log # 持续跟踪过程
+```
+
+
+
+<br />
+
+
+
+## curl 命令
+
+简介：`curl` 用于发送 `http` 网络请求。
+
+功能：获取网页信息、下载文件。
+
+语法：`curl [-O] url`
+
+- 选项：`-O`，用于下载文件，当 `url` 是下载链接时，使用此选项会保存文件。
+- 参数：`url`，要发起请求的网络地址。
+
+实例：
+
+```bash
+# 1. 向cip.cc发起网络请求（cip.cc：一个公开的网站，可以帮我们获取主机的公网IP地址）
+curl cip.cc
+> IP      : 223.104.77.175 # 公网IP
+> 地址    : 中国  中国 
+> 数据二  : 中国 | 移动数据上网公共出口
+> 数据三  : 中国广东省东莞市 | 移动
+> URL     : http://www.cip.cc/223.104.77.175
+
+# 2. 向 www.baidu.com 发起网络请求(获取了请求，得到了网页代码，但是需要浏览器进行渲染才能显示)
+curl www.baidu.com
+> <!DOCTYPE html>
+> <!--STATUS OK--><html> <head><meta http-equiv=content-type content=text/html;charset=utf-8><meta http-> > > equiv=X-UA-Compatible content=IE=Edge><meta content=always name=referrer><link rel=styleshee
+> type=text/css href=http://s1.bdstatic.com/r/www/cache/bdorz/baidu.min.css><title>百度一下，你就知
+> ...........
+
+# 3. curl -O 下载安装包
+curl -O http://archive.apache.org/dist/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz
+> % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+>                                  Dload  Upload   Total   Spent    Left  Speed
+> 0  477M    0 10787    0     0  17345      0  8:01:09 --:--:--  8:01:09 17342
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br />
 
 
 
@@ -525,6 +679,7 @@ chronyc sources -v
 ## 计算机英语
 
 ```bash
+
 # Permission denied（没有权限）
 > Permission: 许可，权限
 > denied: 拒绝
