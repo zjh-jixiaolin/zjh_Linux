@@ -48,15 +48,35 @@
 
 如上图计算机`A`的微信连接到计算机`B`的微信，`A`发送一条消息，此时使用的`50001`即**动态端口**，是系统临时找一个端口作为出口发出消息，发出后就会释放此端口，下次发送消息时可能使用的就是`60001`动态端口发出。而`B`的微信使用端口`5678`，即**注册端口**，长期绑定此端口等待别人连接。
 
-### nmap命令 查看端口占用
+### 查看端口占用
 
-通过 `nmap` 命令查看端口的占用情况：
+#### nmap 命令
+
+通过 `nmap` 命令查看网络主机端口的占用情况：
 
 - 安装 `yum -y install nmap`
 
-语法：
+功能：扫描网络主机的开放端口
 
+语法：`nmap IP地址`
 
+实例：
+
+```bash
+# 查看本机开放端口
+nmap 127.0.0.1
+> Starting Nmap 6.40 ( http://nmap.org ) at 2023-05-17 02:05 CST
+> Nmap scan report for localhost (127.0.0.1)
+> Host is up (0.0000070s latency).
+> Not shown: 998 closed ports
+> PORT   STATE SERVICE
+> 22/tcp open  ssh
+> 25/tcp open  smtp
+> # 可以看到，本机上有2个端口被程序占用，其中22端口为SSH远程服务。
+
+```
+
+#### netstart 命令
 
 
 
