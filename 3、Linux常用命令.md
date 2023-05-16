@@ -88,7 +88,7 @@
 
 <br />
 
-P
+
 
 ## 软链接和硬链接
 
@@ -111,12 +111,12 @@ P
 
 功能：创建文件 **硬链接（类似于源文件的别名，两个名字指向同一个文件数据）**
 
-![image-20230511153438071](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305111534854.png)
-
 语法：`ln 源文件 目标文件`
 
 - 参数1：被链接的源地址
 - 参数2：要链接去的地方（硬链接的名称和存放位置）
+
+![image-20230516143007986](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305161430548.png)
 
 >**硬链接** 的特点：
 >
