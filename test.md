@@ -56,7 +56,7 @@
 
 - 安装 `yum -y install nmap`
 
-功能：扫描网络主机的开放端口
+功能：扫描网络主机的开放端口。
 
 语法：`nmap IP地址`
 
@@ -76,15 +76,45 @@ nmap 127.0.0.1
 
 ```
 
-#### netstart 命令
+#### netstat 命令
+
+安装：`yum -y install net-tools`
+
+功能：查看端口占用或空闲状态。
+
+用法：`netstat -anp | grep xxx`
+
+```bash
+# 查看端口是否被占用
+netstat -anp | grep 5000
+```
 
 
 
+## 1. 进程
 
+程序运行在操作系统上，是被操作系统所管理的。
 
+为管理运行的程序，每个程序在运行时，便被操作系统注册为系统中的一个：**进程**
 
+并会为每个进程分配一个独有的：进程`ID`（进程号）
 
+![image-20230517103157129](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305171032548.png)
 
+### 查看进程
+
+#### ps 命令
+
+功能：查看 `Linux` 系统中进程信息。
+
+语法：`ps [-e -f]`
+
+- 选项：`-e` 列出全部的进程。
+- 选项：`-f` 以完全格式化形式展示信息（展示全部信息）。
+
+固定用法：`ps -ef` 列出全部进程的全部信息，具体内容如下：
+
+![image-20230517104058022](C:/Users/18279/AppData/Roaming/Typora/typora-user-images/image-20230517104058022.png)
 
 
 
