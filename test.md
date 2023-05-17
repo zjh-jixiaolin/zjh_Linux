@@ -114,9 +114,18 @@ netstat -anp | grep 5000
 
 固定用法：`ps -ef` 列出全部进程的全部信息，具体内容如下：
 
-![image-20230517104058022](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305171041504.png)
+![image-20230517104209054](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305171042019.png)
 
-
+>从左到右分别为：
+>
+>- `UID`：进程所属的用户 `ID`
+>- `PID`：进程的进程号 `ID`
+>- `PPID`：进程的父 `ID`（启动此进程的其他进程）。
+>- `C`：此进程的`CPU` 占用率（百分比）。
+>- `STIME`：进程的启动时间。
+>- `TTY`：启动此进程的终端序号，如显示 `?`，表示非终端启动，而是系统内置启动的。
+>- `TIME`：进程占用 `CPU` 的时间
+>- `CMD`：进程对应的名称 或 启动路径 或 启动命令
 
 
 
