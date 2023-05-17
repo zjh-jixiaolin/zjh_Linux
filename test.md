@@ -114,7 +114,7 @@ netstat -anp | grep 5000
 
 固定用法：`ps -ef` 列出全部进程的全部信息，具体内容如下：
 
-![image-20230517104058022](C:/Users/18279/AppData/Roaming/Typora/typora-user-images/image-20230517104058022.png)
+![image-20230517104058022](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305171041504.png)
 
 
 
