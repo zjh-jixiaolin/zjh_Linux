@@ -485,8 +485,6 @@ curl -O http://archive.apache.org/dist/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.t
 ```
 
 
-
-<<<<<<< HEAD
 <br />
 
 
@@ -578,18 +576,6 @@ Terminated # 终止
 zjh@ubantu:~$ tail
 > Killed # 杀死
 ```
-=======
-
-
-
-
-
-
-
-
-
->>>>>>> 8098b5fa12f3f16cb9ddfa6b8160126af0c258a3
-
 
 
 <br />
