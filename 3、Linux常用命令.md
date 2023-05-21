@@ -64,6 +64,20 @@
 
 
 
+## source 命令
+
+功能：读取并执行指定脚本文件。
+
+语法：`source 文件`
+
+作用：`source`命令会将指定文件中的命令和语句直接注入到当前的Shell环境中。
+
+
+
+<br />
+
+
+
 ## systemctl 命令
 
 简介：`Linux` 许多软件（内置或第三方）均支持使用 `systemctl` 命令控制：**启动、停止、开机自启**，能够被 `systemctl` 管理的软件。一般也称为 **服务**。系统内置的服务较多，如下：
@@ -484,8 +498,40 @@ curl -O http://archive.apache.org/dist/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.t
 > 0  477M    0 10787    0     0  17345      0  8:01:09 --:--:--  8:01:09 17342
 ```
 
-
 <br />
+
+
+
+## top 命令
+
+功能：查看主机运行状态。
+
+语法：`top [选项]`
+
+| 选项 | 功能                                             |
+| ---- | ------------------------------------------------ |
+| `-p` | 显示某个进程信息                                 |
+| `-d` | 设置刷新时间，默认`5s`                           |
+| `-c` | 显示产生进程的完整命令信息，默认为进程名         |
+| `-i` | 不显示任何闲置（`idle`）或无用（`zombie`）的进程 |
+| `-u` | 查看 **特定用户** 启动的进程                     |
+
+| 交互式选项（进入 top 后） | 功能                                         |
+| ------------------------- | -------------------------------------------- |
+| `c` 键                    | 显示进程的完整命令信息                       |
+| `f` 键                    | 可选择需要展示的项目（过滤到不需要的选项）   |
+| `M` 键                    | 根据 内存大小（RES）排序                     |
+| `P` 键                    | 根据 `CPU` 使用百分比大小排序                |
+| `T` 键                    | 根据 **累计时间** 排序                       |
+| `E` 键                    | 切换 **顶部内存** 显示单位（KB\MB\GB\TB\PB） |
+| `e` 键                    | 切换 **进程内存** 显示单位（KB\MB\GB\TB\PB） |
+| `i` 键                    | 不显示 **闲置或无用** 的进程                 |
+| `t` 键                    | **进度条** 显示 `CPU` 状态信息               |
+| `m` 键                    | **进度条** 显示 **内存** 状态信息            |
+
+
+
+
 
 
 
@@ -576,6 +622,154 @@ Terminated # 终止
 zjh@ubantu:~$ tail
 > Killed # 杀死
 ```
+
+
+
+<br />
+
+
+
+## df 命令
+
+功能：查看磁盘占用。
+
+语法：`df [-Th]`
+
+- 参数：`-h` 将输出的磁盘大小、已使用大小和可用大小等信息以更 **人性化** 方式显示。
+- 参数：`-T` 增加显示 **文件系统** 类型。
+
+```bash
+[zjh@centos ~]$ df -h
+# 文件系统			      容量   已用  可用 已用%  挂载点
+> Filesystem               Size  Used Avail Use% Mounted on
+> devtmpfs                 1.9G     0  1.9G   0% /dev
+> tmpfs                    1.9G     0  1.9G   0% /dev/shm
+> tmpfs                    1.9G   12M  1.9G   1% /run
+> tmpfs                    1.9G     0  1.9G   0% /sys/fs/cgroup
+> /dev/mapper/centos-root   36G  2.2G   33G   7% /
+> /dev/sda1               1014M  234M  781M  24% /boot
+> tmpfs                    378M     0  378M   0% /run/user/0
+> tmpfs                    378M     0  378M   0% /run/user/1000
+```
+
+
+
+<br />
+
+
+
+## 压缩
+
+### tar 命令 压缩
+
+语法：`tar -zcvf 压缩包 被压缩1 被压缩2 ....`
+
+- 选项：`-z`：表示使用`gzip`，压缩体积会更小（可不添加，默认`tar`格式）。
+
+压缩过程：
+
+```bash
+[zjh@centos ~]$ ls
+> 1.txt  2.txt
+ # 压缩文件
+[zjh@centos ~]$ tar -zvcf test.tar.gz 1.txt 2.txt 
+ # 压缩成功
+[zjh@centos ~]$ ls
+> test.tar.gz 1.txt 2.txt
+```
+
+### zip 命令 压缩
+
+在 `Linux` 中，使用`zip` 命令，压缩文件为 `zip` 压缩包。
+
+语法：`zip [-r] 压缩包 被压缩1 被压缩2`
+
+- 选项：`-r`：被压缩文件包含文件夹时，使用 `-r` 选项。
+
+`zip` 压缩过程：
+
+```bash
+# 压缩文件和文件夹
+[zjh@centos ~]$ zip -r test.zip 1.txt 2.txt test
+  adding: 1.txt (stored 0%)
+  adding: 2.txt (deflated 67%) # 文件大小减少67%
+  adding: test/ (stored 0%)
+  adding: test/1.txt (stored 0%)
+  adding: test/2.txt (stored 0%)
+  
+
+[zjh@centos ~]$ ls
+1.txt  2.txt  test  test.zip
+```
+
+
+
+## 解压
+
+### tar 解压
+
+语法：`tar -zxvf 被解压的文件 -C 要解压去的地方`
+
+- 选项：`-z`：表示使用`gzip`，压缩体积会更小
+- 选项：`-C`：指定要解压去的地方，不写解压到当前目录
+
+解压过程：
+
+```bash
+# 查看当前路径：test文件夹、gz压缩包
+[zjh@centos ~]$ ls
+> test  test.tar.gz
+
+# 解压到当前路径
+[zjh@centos ~]$ tar -zxvf test.tar.gz
+> 1.txt
+> 2.txt
+
+# 解压到指定路径
+[zjh@centos ~]$ tar -zxvf test.tar.gz -C test
+> 1.txt
+> 2.txt
+[zjh@centos ~]$ cd test
+[zjh@centos test]$ ls
+> 1.txt  2.txt
+```
+
+### unzip 解压
+
+在 `Linux` 中，使用`unzip` 命令，解压文件为 `zip` 的压缩包。
+
+语法：`unzip [选项] 压缩包文件`
+
+- 选项：`-d` 指定解压去的位置。如 `unzip  test.zip -d test`
+- 参数，被解压的 `zip` 压缩包文件。
+
+`unzip`解压过程：
+
+```bash
+[zjh@centos ~]$ ls
+> test.zip testzip # testzip为文件夹，.zip为压缩包
+
+# 解压到当前路径
+[zjh@centos ~]$ unzip test.zip
+
+# 解压到指定文件夹
+[zjh@centos ~]$ unzip test.zip -d testzip/
+> Archive:  test.zip
+>  extracting: testzip/1.txt
+>  inflating: testzip/2.txt
+>   creating: testzip/test/
+> extracting: testzip/test/1.txt
+> extracting: testzip/test/2.txt
+```
+
+
+
+
+
+
+
+
+
 
 
 <br />
