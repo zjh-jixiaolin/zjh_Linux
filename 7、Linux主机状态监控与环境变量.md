@@ -130,6 +130,10 @@
 
 
 
+<br />
+
+
+
 ## 2. 环境变量
 
 **环境变量** 是操作系统（`Windows、Linux、Mac`）在运行时，记录的一些关键性信息，用以辅助系统运行。
@@ -187,7 +191,7 @@
   - 针对 **所有用户** 生效，配置在 **系统** 的 `/etc/profile` 文件中，如 `export MYNAME=ZJH`
   - 通过语法：`source 配置文件` 进行立即生效 或 重启系统。
 
-![image-20230521230043979](C:/Users/18279/AppData/Roaming/Typora/typora-user-images/image-20230521230043979.png)
+![image-20230521230043979](https://raw.githubusercontent.com/zjh-jixiaolin/map_strong/main/202305220102394.png)
 
 ### 自定义环境变量 PATH
 
